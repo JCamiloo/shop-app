@@ -49,9 +49,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#888",
     textAlign: "center",
-    marginVertical: 20,
+    marginVertical: 5,
   },
   description: {
+    fontFamily: "open-sans-bold",
     fontSize: 14,
     textAlign: "center",
   },
