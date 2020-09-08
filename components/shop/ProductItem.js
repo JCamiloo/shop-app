@@ -33,12 +33,12 @@ const ProductItem = (props) => {
             <View style={styles.actions}>
               <Button
                 color={Colors.primary}
-                title="View Details"
+                title="Ver detalles"
                 onPress={props.onViewDetail}
               ></Button>
               <Button
                 color={Colors.primary}
-                title="To Cart"
+                title="Añadir"
                 onPress={props.onAddToCart}
               ></Button>
             </View>
