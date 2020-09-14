@@ -63,8 +63,8 @@ UserProductsScreen.navigationOptions = (navData) => {
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Add"
-          iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
-          onPress={() => navData.navigation("EditProduct")}
+          iconName={Platform.OS === "android" ? "md-add" : "ios-add"}
+          onPress={() => navData.navigation.navigate("EditProduct")}
         />
       </HeaderButtons>
     ),
