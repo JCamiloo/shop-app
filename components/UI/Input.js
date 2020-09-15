@@ -12,6 +12,11 @@ const inputReducer = (state, action) => {
         value: action.value,
         isValid: action.isValid,
       };
+    case INPUT_BLUR:
+      return {
+        ...state,
+        touched: true,
+      };
     default:
       return state;
   }
@@ -28,7 +33,7 @@ const Input = (props) => {
 
   useEffect(() => {
     if (inputState.touched) {
-      props.onInputChange(id, inputState.value, inputState.isValid);
+      onInputChange(id, inputState.value, inputState.isValid);
     }
   }, [inputState, onInputChange, id]);
 
@@ -59,7 +64,7 @@ const Input = (props) => {
 
   return (
     <View style={styles.formControl}>
-      <Text style={styles.label}> {props.label} </Text>
+      <Text style={styles.label}>{props.label}</Text>
       <TextInput
         {...props}
         style={styles.input}
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   errorContainer: {
-    margin: 5,
+    marginVertical: 5,
   },
   errorText: {
     fontFamily: "open-sans",

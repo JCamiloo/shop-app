@@ -21,17 +21,17 @@ const formReducer = (state, action) => {
       ...state.inputValues,
       [action.input]: action.value,
     };
-    const updatedValidites = {
+    const updatedValidities = {
       ...state.inputValidities,
       [action.input]: action.isValid,
     };
     let updatedFormIsValid = true;
-    for (const key in updatedValidites) {
-      updatedFormIsValid = updatedFormIsValid && updatedValidites[key];
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
     }
     return {
       formIsValid: updatedFormIsValid,
-      inputValidities: updatedValidites,
+      inputValidities: updatedValidities,
       inputValues: updatedValues,
     };
   }
@@ -127,10 +127,9 @@ const EditProductScreen = (props) => {
             initiallyValid={!!editedProduct}
             required
           />
-
           <Input
             id="imageUrl"
-            label="Image URL"
+            label="Image Url"
             errorText="Please enter a valid image url"
             keyboardType="default"
             returnKeyType="next"
@@ -139,7 +138,6 @@ const EditProductScreen = (props) => {
             initiallyValid={!!editedProduct}
             required
           />
-
           {editedProduct ? null : (
             <Input
               id="price"
@@ -152,7 +150,6 @@ const EditProductScreen = (props) => {
               min={0.1}
             />
           )}
-
           <Input
             id="description"
             label="Description"
@@ -160,7 +157,7 @@ const EditProductScreen = (props) => {
             keyboardType="default"
             autoCapitalize="sentences"
             autoCorrect
-            multiLine
+            multiline
             numberOfLines={3}
             onInputChange={inputChangeHandler}
             initialValue={editedProduct ? editedProduct.description : ""}
