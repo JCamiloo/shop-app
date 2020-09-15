@@ -41,12 +41,16 @@ export const fetchProducts = () => {
 
 export const deleteProduct = (productId) => {
   return async (dispatch) => {
-    await fetch(
+    const response = await fetch(
       `https://ngstore-138b2.firebaseio.com/products/${productId}.json`,
       {
         method: "DELETE",
       }
     );
+
+    if (!response.ok) {
+      throw new Error("Algo sucedió");
+    }
 
     dispatch({ type: DELETE_PRODUCT, pid: productId });
   };
@@ -76,13 +80,20 @@ export const createProduct = (title, description, imageUrl, price) => {
 
 export const updateProduct = (id, title, description, imageUrl, price) => {
   return async (dispatch) => {
-    await fetch(`https://ngstore-138b2.firebaseio.com/products/${id}.json`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, description, imageUrl }),
-    });
+    const response = await fetch(
+      `https://ngstore-138b2.firebaseio.com/products/${id}.json`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, description, imageUrl }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Algo sucedió");
+    }
 
     dispatch({
       type: UPDATE_PRODUCT,

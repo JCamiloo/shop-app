@@ -6,12 +6,12 @@ import {
   Button,
   Platform,
   ActivityIndicator,
-  StyleSheet,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
 import ProductItem from "../../components/shop/ProductItem";
+import Centered from "../../components/UI/Centered";
 import Colors from "../../constants/Colors";
 import * as cartActions from "../../store/actions/cart";
 import * as productsActions from "../../store/actions/products";
@@ -56,30 +56,30 @@ const ProductsOverviewScreen = (props) => {
 
   if (error) {
     return (
-      <View style={styles.centered}>
+      <Centered>
         <Text>Ocurrió un error</Text>
         <Button
           title="Intentar de nuevo"
           onPress={loadProducts}
           color={Colors.primary}
         ></Button>
-      </View>
+      </Centered>
     );
   }
 
   if (isLoading) {
     return (
-      <View style={styles.centered}>
+      <Centered>
         <ActivityIndicator size="large" color={Colors.primary} />
-      </View>
+      </Centered>
     );
   }
 
   if (!isLoading && products.length === 0) {
     return (
-      <View style={styles.centered}>
+      <Centered>
         <Text> No se encontraron productos</Text>
-      </View>
+      </Centered>
     );
   }
 
@@ -141,11 +141,3 @@ ProductsOverviewScreen.navigationOptions = (navData) => {
 };
 
 export default ProductsOverviewScreen;
-
-const styles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
