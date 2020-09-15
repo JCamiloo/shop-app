@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "23%",
     paddingHorizontal: 20,
+    marginTop: 5,
   },
 });
 
