@@ -1,11 +1,11 @@
 import {
-  CREATE_PRODUCT,
   DELETE_PRODUCT,
-  SET_PRODUCTS,
+  CREATE_PRODUCT,
   UPDATE_PRODUCT,
+  SET_PRODUCTS,
 } from "../actions/products";
-import PRODUCTS from "../../data/dummy-data";
 import Product from "../../models/product";
+import PRODUCTS from "../../data/dummy-data";
 
 const initialState = {
   availableProducts: PRODUCTS,
@@ -37,7 +37,6 @@ export default (state = initialState, action) => {
       const productIndex = state.userProducts.findIndex(
         (prod) => prod.id === action.pid
       );
-
       const updatedProduct = new Product(
         action.pid,
         state.userProducts[productIndex].ownerId,
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
         action.productData.description,
         state.userProducts[productIndex].price
       );
-
       const updatedUserProducts = [...state.userProducts];
       updatedUserProducts[productIndex] = updatedProduct;
       const availableProductIndex = state.availableProducts.findIndex(
