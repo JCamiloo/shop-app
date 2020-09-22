@@ -1,11 +1,12 @@
 import React from "react";
-import { FlatList, Button, Platform, Alert } from "react-native";
+import { Text, FlatList, Button, Platform, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/HeaderButton";
 import ProductItem from "../../components/shop/ProductItem";
 import Colors from "../../constants/Colors";
 import * as productsActions from "../../store/actions/products";
+import Centered from "../../components/UI/Centered";
 
 const UserProductsScreen = (props) => {
   const userProducts = useSelector((state) => state.products.userProducts);
@@ -24,6 +25,14 @@ const UserProductsScreen = (props) => {
       },
     ]);
   };
+
+  if (userProducts.length === 0) {
+    return (
+      <Centered>
+        <Text>No products found</Text>
+      </Centered>
+    );
+  }
 
   return (
     <FlatList
