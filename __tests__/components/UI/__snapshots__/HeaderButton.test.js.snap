@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderButton component tests HeaderButton component renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flexDirection": "row",
+      },
+      Object {
+        "marginRight": 5,
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    hitSlop={
+      Object {
+        "bottom": 5,
+        "left": 5,
+        "right": 5,
+        "top": 5,
+      }
+    }
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 17,
+              "marginHorizontal": 10,
+            },
+            Object {
+              "color": "#C2185B",
+            },
+            undefined,
+          ]
+        }
+      >
+        Add Place
+      </Text>
+    </View>
+  </View>
+</View>
+`;
