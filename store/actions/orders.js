@@ -1,7 +1,7 @@
-import Order from "../../models/order";
+import Order from '../../models/order';
 
-export const ADD_ORDER = "ADD_ORDER";
-export const SET_ORDERS = "SET_ORDER";
+export const ADD_ORDER = 'ADD_ORDER';
+export const SET_ORDERS = 'SET_ORDERS';
 
 export const fetchOrders = () => {
   return async (dispatch, getState) => {
@@ -12,7 +12,7 @@ export const fetchOrders = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Somethis went wrong");
+        throw new Error('Something went wrong!');
       }
 
       const resData = await response.json();
@@ -22,15 +22,15 @@ export const fetchOrders = () => {
         loadedOrders.push(
           new Order(
             key,
-            resData[key].carItems,
+            resData[key].cartItems,
             resData[key].totalAmount,
             new Date(resData[key].date)
           )
         );
       }
       dispatch({ type: SET_ORDERS, orders: loadedOrders });
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      throw err;
     }
   };
 };
@@ -43,20 +43,20 @@ export const addOrder = (cartItems, totalAmount) => {
     const response = await fetch(
       `https://ngstore-138b2.firebaseio.com/orders/${userId}.json?auth=${token}?`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           cartItems,
           totalAmount,
-          date: date.toString(),
-        }),
+          date: date.toISOString()
+        })
       }
     );
 
     if (!response.ok) {
-      throw new Error("Algo ocurrió");
+      throw new Error('Something went wrong!');
     }
 
     const resData = await response.json();
@@ -67,8 +67,8 @@ export const addOrder = (cartItems, totalAmount) => {
         id: resData.name,
         items: cartItems,
         amount: totalAmount,
-        date,
-      },
+        date
+      }
     });
   };
 };

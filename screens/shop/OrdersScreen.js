@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Text, FlatList, Platform, ActivityIndicator } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import CustomHeaderButton from "../../components/UI/HeaderButton";
-import OrderItem from "../../components/shop/OrderItem";
-import Centered from "../../components/UI/Centered";
-import Colors from "../../constants/Colors";
-import * as ordersActions from "../../store/actions/orders";
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, Platform, ActivityIndicator } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../../components/UI/HeaderButton';
+import OrderItem from '../../components/shop/OrderItem';
+import Centered from '../../components/UI/Centered';
+import Colors from '../../constants/Colors';
+import * as ordersActions from '../../store/actions/orders';
 
 const OrdersScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ const OrdersScreen = (props) => {
     return (
       <Centered>
         <ActivityIndicator
-          size="large"
+          size='large'
           color={Colors.primary}
         ></ActivityIndicator>
       </Centered>
@@ -56,16 +56,16 @@ const OrdersScreen = (props) => {
 
 OrdersScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: "Your Orders",
+    headerTitle: 'Your Orders',
     headerLeft: (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
-          title="Menu"
-          iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+          title='Menu'
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
           onPress={() => navData.navigation.toggleDrawer()}
         />
       </HeaderButtons>
-    ),
+    )
   };
 };
 

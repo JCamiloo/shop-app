@@ -1,20 +1,20 @@
-import Product from "../../models/product";
+import Product from '../../models/product';
 
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const SET_PRODUCTS = "SET_PRODUCTS";
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 export const fetchProducts = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        "https://ngstore-138b2.firebaseio.com/products.json"
+        'https://ngstore-138b2.firebaseio.com/products.json'
       );
 
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        throw new Error('Something went wrong!');
       }
 
       const resData = await response.json();
@@ -36,7 +36,7 @@ export const fetchProducts = () => {
       dispatch({
         type: SET_PRODUCTS,
         products: loadedProducts,
-        userProducts: loadedProducts.filter((prod) => prod.ownerId === userId),
+        userProducts: loadedProducts.filter((prod) => prod.ownerId === userId)
       });
     } catch (err) {
       throw err;
@@ -50,12 +50,12 @@ export const deleteProduct = (productId) => {
     const response = await fetch(
       `https://ngstore-138b2.firebaseio.com/products/${productId}.json?auth=${token}`,
       {
-        method: "DELETE",
+        method: 'DELETE'
       }
     );
 
     if (!response.ok) {
-      throw new Error("Something went wrong!");
+      throw new Error('Something went wrong!');
     }
     dispatch({ type: DELETE_PRODUCT, pid: productId });
   };
@@ -68,22 +68,21 @@ export const createProduct = (title, description, imageUrl, price) => {
     const response = await fetch(
       `https://ngstore-138b2.firebaseio.com/products.json?auth=${token}`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           title,
           description,
           imageUrl,
           price,
-          ownerId: userId,
-        }),
+          ownerId: userId
+        })
       }
     );
 
     const resData = await response.json();
-    console.log("restData", resData);
 
     dispatch({
       type: CREATE_PRODUCT,
@@ -93,8 +92,8 @@ export const createProduct = (title, description, imageUrl, price) => {
         description,
         imageUrl,
         price,
-        ownerId: userId,
-      },
+        ownerId: userId
+      }
     });
   };
 };
@@ -105,20 +104,20 @@ export const updateProduct = (id, title, description, imageUrl) => {
     const response = await fetch(
       `https://ngstore-138b2.firebaseio.com/products/${id}.json?auth=${token}`,
       {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           title,
           description,
-          imageUrl,
-        }),
+          imageUrl
+        })
       }
     );
 
     if (!response.ok) {
-      throw new Error("Something went wrong!");
+      throw new Error('Something went wrong!');
     }
 
     dispatch({
@@ -127,8 +126,8 @@ export const updateProduct = (id, title, description, imageUrl) => {
       productData: {
         title,
         description,
-        imageUrl,
-      },
+        imageUrl
+      }
     });
   };
 };

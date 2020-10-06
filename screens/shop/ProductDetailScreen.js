@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 import {
   ScrollView,
   View,
   Text,
   Image,
   Button,
-  StyleSheet,
-} from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import Colors from "../../constants/Colors";
-import * as cartActions from "../../store/actions/cart";
+  StyleSheet
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import Colors from '../../constants/Colors';
+import * as cartActions from '../../store/actions/cart';
 
 const ProductDetailScreen = (props) => {
-  const productId = props.navigation.getParam("productId");
+  const productId = props.navigation.getParam('productId');
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((prod) => prod.id === productId)
   );
   const dispatch = useDispatch();
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
       <View style={styles.actions}>
         <Button
           color={Colors.primary}
-          title="Añadir"
+          title='Add to Cart'
           onPress={() => {
             dispatch(cartActions.addToCart(selectedProduct));
           }}
@@ -38,33 +38,32 @@ const ProductDetailScreen = (props) => {
 
 ProductDetailScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: navData.navigation.getParam("productTitle"),
+    headerTitle: navData.navigation.getParam('productTitle')
   };
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
   image: {
-    width: "100%",
-    height: 300,
+    width: '100%',
+    height: 300
   },
   actions: {
     marginVertical: 10,
-    alignItems: "center",
+    alignItems: 'center'
   },
   price: {
     fontSize: 20,
-    color: "#888",
-    textAlign: "center",
-    marginVertical: 5,
+    color: '#888',
+    textAlign: 'center',
+    marginVertical: 20,
+    fontFamily: 'open-sans-bold'
   },
   description: {
-    fontFamily: "open-sans-bold",
+    fontFamily: 'open-sans',
     fontSize: 14,
-    textAlign: "center",
-  },
+    textAlign: 'center',
+    marginHorizontal: 20
+  }
 });
 
 export default ProductDetailScreen;
