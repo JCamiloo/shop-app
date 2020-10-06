@@ -204,7 +204,7 @@ export const screenOptions = (navData) => {
     headerTitle: navData.navigation.getParam('productId')
       ? 'Edit Product'
       : 'Add Product',
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title='Save'
